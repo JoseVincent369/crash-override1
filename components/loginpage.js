@@ -1,31 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const RegistrationPage = ({ navigation }) => {
-  const [name, setName] = useState('');
+const LoginPage = ({ navigation }) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleRegistration = () => {
-    // Here you can implement your registration logic, such as sending data to a server
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
-  };
 
   const handleLogin = () => {
-    navigation.navigate('Landing'); // Navigate back to Landing page
+    // Here you can implement your login logic, such as validating credentials
+    console.log('Email:', email);
+    // Implement your login logic here...
+  };
+
+  const handleSignUp = () => {
+    navigation.navigate('Registration'); // Navigate to the registration page
+  };
+
+  const handleForgotPassword = () => {
+    navigation.navigate('AccountRecovery'); // Navigate to the AccountRecovery screen
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Create Account</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={setName}
-      />
+      <Text style={styles.heading}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -37,15 +32,14 @@ const RegistrationPage = ({ navigation }) => {
         style={styles.input}
         placeholder="Password"
         secureTextEntry
-        value={password}
-        onChangeText={setPassword}
       />
-      <TouchableOpacity onPress={handleRegistration}>
-        <Text style={styles.button}>Sign Up</Text>
-      </TouchableOpacity>
-      <Text style={styles.loginText}>Already have an account? </Text>
       <TouchableOpacity onPress={handleLogin}>
-        <Text style={styles.loginLink}>Login</Text>
+        <Text style={styles.button}>Login</Text>
+      </TouchableOpacity>
+      <Text style={styles.forgotPassword} onPress={handleForgotPassword}>Forgot Password?</Text> {/* Link/button for forgot password */}
+      <Text style={styles.signUpText}>Don't have an account? </Text>
+      <TouchableOpacity onPress={handleSignUp}>
+        <Text style={styles.signUpLink}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -80,13 +74,18 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 10,
   },
-  loginText: {
+  forgotPassword: {
+    color: 'blue',
+    textDecorationLine: 'underline',
     marginBottom: 10,
   },
-  loginLink: {
+  signUpText: {
+    marginBottom: 10,
+  },
+  signUpLink: {
     color: 'blue',
     textDecorationLine: 'underline',
   },
 });
 
-export default RegistrationPage;
+export default LoginPage;

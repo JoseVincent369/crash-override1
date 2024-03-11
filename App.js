@@ -1,12 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import LandingPage from './components/landingpage';
 import RegistrationPage from './components/Registration';
+import LoginPage from './components/loginpage';
+import AccountRecovery from './components/AccountRecovery';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+const Stack = createStackNavigator();
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <RegistrationPage /> {/* Render the RegistrationPage component */}
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Landing">
+        <Stack.Screen name="Landing" component={LandingPage}  />
+        <Stack.Screen name="Registration" component={RegistrationPage} />
+        <Stack.Screen name="loginpage" component={LoginPage} />
+        <Stack.Screen name="AccountRecovery" component={AccountRecovery} />
+      </Stack.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
